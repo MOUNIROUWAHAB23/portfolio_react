@@ -1,0 +1,41 @@
+.skill {
+    padding: 60px 0;
+    background-color: #fdfdfd;
+    text-align: center;
+  }
+  
+  .skill h2 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  
+  .skill p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    padding: 0 15px;
+  }
+  
+  .skill-slider .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .skill-slider .item:hover {
+    transform: scale(1.05);
+  }
+  
+  .skill-slider h5 {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  

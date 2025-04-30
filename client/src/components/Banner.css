@@ -1,0 +1,51 @@
+.banner {
+    padding: 60px 0;
+    background: #f9f9f9;
+    min-height: 70vh;
+  }
+  
+  .tagline {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #6c757d;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  .title-banner {
+    font-size: 42px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  
+  .title-banner .highlight {
+    color: #007bff;
+  }
+  
+  .txt-rotate .wrap {
+    border-right: 0.08em solid #666;
+    font-weight: 700;
+    font-size: 38px;
+    animation: blink-caret 0.75s step-end infinite;
+    color: inherit; /* ✅ On garde la couleur définie ailleurs (ex. dans .colorism) */
+  }
+  
+  
+  .description-banner {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Animation du curseur */
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #666; }
+  }
+  
