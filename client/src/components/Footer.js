@@ -27,8 +27,8 @@ export const Footer = () => {
           <Col md={4}>
             <h5>suivez-moi</h5>
             <div className="social-icon">
-              <a href="https://www.linkedin.com/in/wahab-mounirou-161786253/"><img src={navIcon1} alt="Icon" /></a>
-              <a href="https://github.com/MOUNIROUWAHAB23"><img src={github} alt="Icon" /></a>
+              <a target='_blank' href="https://www.linkedin.com/in/wahab-mounirou-161786253/"><img src={navIcon1} alt="Icon" /></a>
+              <a target='_blank' href="https://github.com/MOUNIROUWAHAB23"><img src={github} alt="Icon" /></a>
               {/* <a href="#"><img src={navIcon3} alt="Icon" /></a> */}
             </div>
           </Col>
