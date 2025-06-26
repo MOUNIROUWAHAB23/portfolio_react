@@ -1,51 +1,139 @@
 .banner {
-    padding: 60px 0;
-    background: #f9f9f9;
-    min-height: 70vh;
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  border-radius: 24px;
+  margin: 32px 16px;
+}
+
+.tagline {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #5a5a89;
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: #e3e8ff;
+  padding: 6px 18px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(90, 90, 137, 0.06);
+}
+
+.title-banner {
+  font-size: 48px;
+  font-weight: 800;
+  color: #232946;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(35, 41, 70, 0.07);
+}
+
+.title-banner .highlight {
+  color: #4f8cff;
+  background: linear-gradient(90deg, #4f8cff 40%, #a084ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.txt-rotate .wrap {
+  border-right: 0.08em solid #4f8cff;
+  font-weight: 800;
+  font-size: 40px;
+  animation: blink-caret 0.75s step-end infinite;
+  color: inherit;
+  padding-right: 4px;
+}
+
+.description-banner {
+  font-size: 20px;
+  color: #444b5a;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(255,255,255,0.7);
+  padding: 18px 28px;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(68, 75, 90, 0.07);
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #4f8cff; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .banner {
+    padding: 48px 0;
+    min-height: 60vh;
   }
-  
-  .tagline {
-    display: inline-block;
-    font-size: 18px;
-    font-weight: 600;
-    color: #6c757d;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  
   .title-banner {
-    font-size: 42px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 20px;
-    line-height: 1.4;
+    font-size: 36px;
   }
-  
-  .title-banner .highlight {
-    color: #007bff;
-  }
-  
   .txt-rotate .wrap {
-    border-right: 0.08em solid #666;
-    font-weight: 700;
-    font-size: 38px;
-    animation: blink-caret 0.75s step-end infinite;
-    color: inherit; /* ✅ On garde la couleur définie ailleurs (ex. dans .colorism) */
+    font-size: 32px;
   }
-  
-  
   .description-banner {
-    font-size: 18px;
-    color: #444;
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 17px;
+    padding: 14px 12px;
   }
-  
-  /* Animation du curseur */
-  @keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: #666; }
+}
+
+@media (max-width: 600px) {
+  .banner {
+    padding: 32px 0;
+    margin: 16px 4px;
+    border-radius: 12px;
   }
-  
+  .title-banner {
+    font-size: 26px;
+  }
+  .txt-rotate .wrap {
+    font-size: 20px;
+  }
+  .description-banner {
+    font-size: 15px;
+    padding: 10px 6px;
+    border-radius: 10px;
+  }
+}
+
+
+
+
+/* ...existing code... */
+
+.banner .btn-primary {
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 18px;
+  background: linear-gradient(90deg, #5170FF 40%, #ff66c4 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 12px rgba(79, 140, 255, 0.10);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.banner .btn-primary:hover,
+.banner .btn-primary:focus {
+  background: linear-gradient(90deg, #ff66c4 40%, #5170FF 100%);
+  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.18);
+  color: #fff;
+  outline: none;
+}
+
+/* ...existing code... */

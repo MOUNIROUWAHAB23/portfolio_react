@@ -1,33 +1,31 @@
-
-
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import contactImg from "../assets/img/contact-img.svg";  // Assurez-vous que le chemin est correct
-import 'animate.css';
-import TrackVisibility from 'react-on-screen';
+import contactImg from "../assets/img/contact-img.svg";
+import "animate.css";
+import TrackVisibility from "react-on-screen";
 
 export const Contact = () => {
   const formInitialDetails = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
   };
   const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState('Envoyer');
+  const [buttonText, setButtonText] = useState("Envoyer");
   const [status, setStatus] = useState({});
 
   const onFormUpdate = (category, value) => {
     setFormDetails({
       ...formDetails,
-      [category]: value
+      [category]: value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setButtonText("Sending...");
+    setButtonText("Envoi...");
     let response = await fetch("https://my-pfoolio2.onrender.com/contact", {
       method: "POST",
       headers: {
@@ -35,13 +33,13 @@ export const Contact = () => {
       },
       body: JSON.stringify(formDetails),
     });
-    setButtonText("Send");
+    setButtonText("Envoyer");
     let result = await response.json();
     setFormDetails(formInitialDetails);
     if (result.code === 200) {
-      setStatus({ success: true, message: 'Message sent successfully' });
+      setStatus({ success: true, message: "Message envoyé avec succès !" });
     } else {
-      setStatus({ success: false, message: 'Something went wrong, please try again later.' });
+      setStatus({ success: false, message: "Une erreur est survenue, veuillez réessayer." });
     }
   };
 
@@ -49,42 +47,73 @@ export const Contact = () => {
     <section className="contact mt-5" id="contact">
       <Container>
         <Row className="align-items-center">
-          <Col size={12} md={6}>
+          <Col xs={12} md={6} className="mb-4 mb-md-0">
             <TrackVisibility>
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__fadeInLeft" : ""}>
-                  <img src={contactImg} alt="Contact Us" className="contact-image"/>
+                  <img src={contactImg} alt="Contact" className="contact-image" />
                 </div>
               }
             </TrackVisibility>
           </Col>
-          <Col size={12} md={6}>
+          <Col xs={12} md={6}>
             <TrackVisibility>
               {({ isVisible }) =>
-                <div className={`contact-form-wrapper ${isVisible ? "animate__animated animate__fadeInRight" : ""}`}>
-                  <h2>Contactez-moi</h2>
+                <div className={`contact-form-wrapper shadow-lg p-4 ${isVisible ? "animate__animated animate__fadeInRight" : ""}`}>
+                  <h2 className="mb-4 ">Contactez-moi</h2>
                   <form onSubmit={handleSubmit} className="contact-form">
                     <Row>
-                      <Col sm={6} className="px-1">
-                        <input type="text" value={formDetails.firstName} placeholder="Prénom" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
+                      <Col sm={6} className="px-1 mb-3">
+                        <input
+                          type="text"
+                          value={formDetails.firstName}
+                          placeholder="Prénom"
+                          onChange={(e) => onFormUpdate("firstName", e.target.value)}
+                          required
+                        />
                       </Col>
-                      <Col sm={6} className="px-1">
-                        <input type="text" value={formDetails.lastName} placeholder="Nom" onChange={(e) => onFormUpdate('lastName', e.target.value)} />
+                      <Col sm={6} className="px-1 mb-3">
+                        <input
+                          type="text"
+                          value={formDetails.lastName}
+                          placeholder="Nom"
+                          onChange={(e) => onFormUpdate("lastName", e.target.value)}
+                          required
+                        />
                       </Col>
-                      <Col sm={6} className="px-1">
-                        <input type="email" value={formDetails.email} placeholder="mail" onChange={(e) => onFormUpdate('email', e.target.value)} />
+                      <Col sm={6} className="px-1 mb-3">
+                        <input
+                          type="email"
+                          value={formDetails.email}
+                          placeholder="Email"
+                          onChange={(e) => onFormUpdate("email", e.target.value)}
+                          required
+                        />
                       </Col>
-                      <Col sm={6} className="px-1">
-                        <input type="tel" value={formDetails.phone} placeholder="Téléphone." onChange={(e) => onFormUpdate('phone', e.target.value)} />
+                      <Col sm={6} className="px-1 mb-3">
+                        <input
+                          type="tel"
+                          value={formDetails.phone}
+                          placeholder="Téléphone"
+                          onChange={(e) => onFormUpdate("phone", e.target.value)}
+                        />
                       </Col>
-                      <Col sm={12} className="px-1">
-                        <textarea rows="6" value={formDetails.message} placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)}></textarea>
+                      <Col sm={12} className="px-1 mb-3">
+                        <textarea
+                          rows="6"
+                          value={formDetails.message}
+                          placeholder="Votre message"
+                          onChange={(e) => onFormUpdate("message", e.target.value)}
+                          required
+                        ></textarea>
                       </Col>
                       <Col sm={12} className="px-1 text-center">
-                        <button type="submit"><span>{buttonText}</span></button>
+                        <button type="submit" className="btn btn-primary navbar-contact-btn" style={{ minWidth: 160 }}>
+                          <span>{buttonText}</span>
+                        </button>
                       </Col>
                       {status.message && (
-                        <Col sm={12}>
+                        <Col sm={12} className="mt-3">
                           <p className={status.success === false ? "danger" : "success"}>{status.message}</p>
                         </Col>
                       )}
@@ -99,3 +128,5 @@ export const Contact = () => {
     </section>
   );
 };
+
+export default Contact;

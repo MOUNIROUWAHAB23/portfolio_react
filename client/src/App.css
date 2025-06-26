@@ -1,72 +1,25 @@
 .App {
   text-align: center;
-  background-color: white; 
-  /* background-image: url('../src/assets/img/ima.jpg'); */
-   /* background-repeat: no-repeat; */
-   /* background-size: cover; */
-  }
-
-
-
-
-  .proj-imgbx img {
-    width: 100%;
-    height: 220px;        /* Ajustable selon la hauteur voulue */
-    object-fit: cover;    /* Garde le ratio, coupe si nécessaire */
-    border-radius: 12px;  /* Facultatif, pour des coins arrondis */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    background: #f2f2f2;  /* Facultatif, couleur de fond si image transparente */
-  }
-  .proj-imgbx {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  .proj-txtx {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-  }
-  
-
-  @media (max-width: 767px) {
-    .proj-imgbx img {
-      height: 150px;
-    }
-  }
-  
-
-
-/* Animation */
-/* Version unifiée et optimisée */
-.clickable-card {
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              box-shadow 0.3s ease,
-              border-radius 0.3s ease;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative; /* Ajouté pour meilleure gestion des enfants absolus */
+  background: linear-gradient(135deg, #f5f7fa 0%, #e3e8ff 100%);
+  min-height: 100vh;
 }
 
-.clickable-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+/* Project Card Styles */
+.proj-imgbx img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(79, 140, 255, 0.07);
+  background: #f2f2f2;
+  transition: transform 0.4s cubic-bezier(.4,2,.6,1);
 }
-
-.clickable-card:active {
-  transform: scale(0.98);
-  transition-duration: 0.1s;
-}
-
 .proj-imgbx {
   position: relative;
   overflow: hidden;
+  margin-bottom: 24px;
+  border-radius: 16px;
 }
-
 .proj-txtx {
   position: absolute;
   inset: 0;
@@ -74,115 +27,280 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(35, 41, 70, 0.82);
+  color: #fff;
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s, transform 0.3s;
   transform: translateY(100%);
-  backdrop-filter: blur(2px); /* Effet de flou moderne */
+  backdrop-filter: blur(2px);
+  border-radius: 16px;
+  padding: 18px;
+  text-align: center;
 }
-
 .proj-imgbx:hover .proj-txtx {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .clickable-card:hover {
-    transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .proj-txtx {
-    padding: 0.5rem;
-    font-size: 0.9em;
-  }
+.proj-imgbx:hover img {
+  transform: scale(1.07);
 }
 
-/* Effet de profondeur au focus pour accessibilité */
+/* Clickable Card Animation */
+.clickable-card {
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(.25,.46,.45,.94), box-shadow 0.3s, border-radius 0.3s;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(79, 140, 255, 0.07);
+}
+.clickable-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(79, 140, 255, 0.13);
+}
+.clickable-card:active {
+  transform: scale(0.98);
+  transition-duration: 0.1s;
+}
 .clickable-card:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.25);
 }
 
-/* Transition douce pour les images */
-.proj-imgbx img {
-  transition: transform 0.4s ease;
+/* Responsive Project Card */
+@media (max-width: 900px) {
+  .proj-imgbx img {
+    height: 150px;
+  }
+  .proj-txtx {
+    padding: 10px;
+    font-size: 0.95em;
+  }
+}
+@media (max-width: 600px) {
+  .proj-imgbx img {
+    height: 110px;
+  }
+  .proj-txtx {
+    padding: 6px;
+    font-size: 0.85em;
+  }
 }
 
-.proj-imgbx:hover img {
-  transform: scale(1.1);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- /* logo  styleee */
- .logo {
-  width: 120px;
+/* Logo Style */
+.logo, .navbar-logo {
+  width: 80px;
   height: auto;
-  margin-left: 50px; 
+  margin-left: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.08);
+  background-color: transparent;
 }
- 
+
+/* Navbar Styles */
+.custom-navbar {
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 2px 16px rgba(79, 140, 255, 0.09);
+  border-radius: 0 0 18px 18px;
+  transition: background 0.3s, box-shadow 0.3s;
+  padding: 10px 0;
+}
+.custom-navbar.scrolled {
+  background: rgba(255,255,255,0.97);
+  box-shadow: 0 4px 24px rgba(79, 140, 255, 0.13);
+}
 .navbar-nav {
   display: flex;
   justify-content: center;
   width: 100%;
-  gap: 30ù;
-  color: white !important;
-} 
- 
+  gap: 24px;
+}
+.navbar-nav .nav-link {
+  margin: 0 12px;
+  color: #232946 !important;
+  font-weight: 600;
+  font-size: 1.08em;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  padding: 8px 18px;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  background: linear-gradient(90deg, #5170FF 40%, #ff66c4 100%);
+  color: #fff !important;
+}
+.navbar-contact-btn {
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-weight: 700;
+  font-size: 1em;
+  background: linear-gradient(90deg, #5170FF 40%, #ff66c4 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 12px rgba(79, 140, 255, 0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.navbar-contact-btn:hover {
+  background: linear-gradient(90deg, #ff66c4 40%, #5170FF 100%);
+  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.18);
+}
+.navbar-social .social-link {
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.navbar-social .social-link:last-child {
+  margin-right: 0;
+}
+.navbar-social .social-link img {
+  width: 28px;
+  height: 28px;
+  filter: grayscale(0.2);
+  transition: filter 0.2s, transform 0.2s;
+}
+.navbar-social .social-link:hover img {
+  filter: grayscale(0) brightness(1.2);
+  transform: scale(1.12) rotate(-6deg);
+}
+
+/* Gradient Text Utility */
 .colorism {
   background: linear-gradient(to right, #5170FF, #ff66c4);
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   color: transparent;
 }
- /* styles.css */
-.navbar-nav .nav-link {
-  margin: 0 15px; /* Adjust this value to increase or decrease the space */
-color: white;
-}
- 
-.navstyle {
- 
-  background: linear-gradient(to right, #5170FF, #ff66c4) ;
-}
- 
- 
-  /* .navstyle{
-    box-shadow: #61dafb;
-    background-color:indigo;
-  } */
-  
-  /* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-} */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Footer Styles */
+/* ...existing code... */
+
+/* Footer Styles */
+.footer {
+  background: #fff;
+  color: #5170FF;
+  padding: 40px 0 20px 0;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -2px 16px rgba(79, 140, 255, 0.09);
+  border-top: 2px solid #e3e8ff;
+}
+.footer h5 {
+  color: #5170FF;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.footer ul {
+  padding-left: 0;
+  list-style: none;
+}
+.footer ul li {
+  margin-bottom: 10px;
+}
+.footer a {
+  color: #5170FF;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 600;
+}
+.footer a:hover {
+  color: #ff66c4;
+}
+.social-icon a {
+  margin-right: 10px;
+}
+.social-icon img {
+  background: linear-gradient(to right, #5170FF, #ff66c4);
+  width: 30px;
+  height: 30px;
+  filter: grayscale(0.2);
+  transition: filter 0.2s, transform 0.2s;
+}
+.social-icon a:hover img {
+  filter: grayscale(0) brightness(1.2);
+  transform: scale(1.12) rotate(-6deg);
 }
 
+/* ...existing code... */
+
+/* Skills Images */
+.skillimg {
+  width: 204px;
+  height: 204px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(79, 140, 255, 0.07);
+}
+
+/* Contact Section */
+.contact {
+  background: linear-gradient(90deg, #5170FF 40%, #ff66c4 100%);
+  padding: 48px 0;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(79, 140, 255, 0.09);
+}
+.contact h2 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+.contact-image {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 0 auto 24px auto;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(79, 140, 255, 0.07);
+}
+.contact-form-wrapper input,
+.contact-form-wrapper textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.13);
+  color: white;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+.contact-form-wrapper input:focus,
+.contact-form-wrapper textarea:focus {
+  background-color: rgba(255,255,255,0.22);
+  outline: none;
+}
+.contact-form-wrapper input::placeholder,
+.contact-form-wrapper textarea::placeholder {
+  color: #e3e8ff;
+}
+.contact-form-wrapper button {
+  background: #fff;
+  color: #5170FF;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1em;
+  transition: background 0.2s, color 0.2s;
+}
+.contact-form-wrapper button:hover {
+  background: #e3e8ff;
+  color: #ff66c4;
+}
+.success {
+  color: #2ecc40;
+  font-weight: 600;
+}
+.danger {
+  color: #ff4136;
+  font-weight: 600;
+}
+
+/* App Header */
 .App-header {
-  background-color: #282c34;
+  background: linear-gradient(135deg, #5170FF 0%, #ff66c4 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -190,121 +308,44 @@ color: white;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  border-radius: 0 0 18px 18px;
 }
 
+/* App Logo Animation */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
 .App-link {
   color: #61dafb;
+  transition: color 0.2s;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-link:hover {
+  color: #5170FF;
 }
 
 
 
+/* Ajoute ceci dans ton fichier CSS global ou spécifique (ex: App.css ou Projects.css) */
 
-.footer {
-  background: linear-gradient(to right, #5170FF, #ff66c4);
-  color: white;
-  padding: 40px 0;
-}
-
-.footer h5 {
-  color: white;
-  margin-bottom: 20px;
-}
-
-.footer ul {
-  padding-left: 0;
-}
-
-.footer ul li {
-  margin-bottom: 10px;
-}
-
-.footer a {
-  color: white;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: #ddd;
-}
-
-.social-icon a {
-  margin-right: 10px;
-}
-
-.social-icon img {
-  width: 30px;
-  height: 30px;
-}
-
-.skillimg{
-  width: 204px;
-  height: 204PX;
-}
-
-
-
-
-.contact {
-  /* background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); */
-  background: linear-gradient(to right, #5170FF, #ff66c4) ;
-  
-  padding: 40px;
-}
-
-.contact h2 {
-  color: white;
-  font-size: 2.5rem;
-}
-
-.contact-image {
-  width: 100%; /* Adjust the width as needed */
-  max-width: 500px;  /* Example max width */
-  display: block;
-  margin: 0 auto; /* Center the image */
-}
-
-.contact-form-wrapper input,
-.contact-form-wrapper textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
+.nav-pills .nav-link {
+  background: transparent;
+  color: #5170FF;
+  font-weight: 600;
   border-radius: 10px;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  transition: background 0.2s, color 0.2s;
 }
 
-.contact-form-wrapper input::placeholder,
-.contact-form-wrapper textarea::placeholder {
-  color: white;
+.nav-pills .nav-link.active,
+.nav-pills .nav-link:hover,
+.nav-pills .nav-link:focus {
+  background: linear-gradient(90deg, #5170FF 40%, #ff66c4 100%);
+  color: #fff !important;
+  box-shadow: 0 2px 12px rgba(79, 140, 255, 0.10);
+  outline: none;
 }
-
-.contact-form-wrapper button {
-  background-color: white;
-  color: #6a11cb;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-}
-
-.contact-form-wrapper button:hover {
-  background-color: #ddd;
-}
-
-.success {
-  color: green;
-}
-
-.danger {
-  color: red;
-}
-
