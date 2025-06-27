@@ -10,6 +10,8 @@ import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
 import { Banner } from "./components/Banner";
 import { Skills } from "./components/Skills";
+import ChatBotWidget from "./components/ChatBotWidget";
+
 // import TodoList from "./components/TodoList";
 
 function App() {
@@ -37,6 +39,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      <ChatBotWidget />
      {/* <TodoList /> */}
      
       

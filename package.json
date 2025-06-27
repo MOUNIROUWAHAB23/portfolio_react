@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "my-pfoolio-fullstack",
   "version": "1.0.0",
   "main": "server.js",
@@ -8,9 +9,11 @@
     "postinstall": "npm install --prefix client"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "nodemailer": "^6.9.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.0",
+    "openai": "^5.8.1"
   }
 }
