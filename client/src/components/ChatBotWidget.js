@@ -22,7 +22,7 @@ function OpenAIStep({ steps, triggerNextStep }) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/api/chat", { message: userMessage })
+      .post("https://my-pfoolio2.onrender.com/api/chat", { message: userMessage })
       .then((res) => setReply(res.data.reply))
       .catch(() => setReply("Désolé, une erreur est survenue."));
   }, [userMessage]);
