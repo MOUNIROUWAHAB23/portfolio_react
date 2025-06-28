@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import axios from "axios";
@@ -15,20 +15,24 @@ const theme = {
   userFontColor: "#232946",
 };
 
+// Composant personnalisé pour appeler l'API Hugging Face via ton backend
 function OpenAIStep({ steps, triggerNextStep }) {
   const userMessage = steps["user-input"].value;
   const [reply, setReply] = useState("...");
-  React.useEffect(() => {
+
+  useEffect(() => {
     axios
       .post("http://localhost:5000/api/chat", { message: userMessage })
       .then((res) => setReply(res.data.reply))
       .catch(() => setReply("Désolé, une erreur est survenue."));
   }, [userMessage]);
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (reply !== "...") {
-      setTimeout(() => triggerNextStep(), 2000);
+      setTimeout(() => triggerNextStep(), 2500); // Laisse le temps de lire
     }
   }, [reply, triggerNextStep]);
+
   return <span>{reply}</span>;
 }
 
@@ -47,9 +51,27 @@ const steps = [
     id: "openai-step",
     component: <OpenAIStep />,
     waitAction: true,
-    trigger: "user-input",
+    trigger: "ask-again",
+  },
+  {
+    id: "ask-again",
+    message: "Voulez-vous poser une autre question ?",
+    trigger: "choice",
+  },
+  {
+    id: "choice",
+    options: [
+      { value: "oui", label: "Oui", trigger: "user-input" },
+      { value: "non", label: "Non, merci", trigger: "end" },
+    ],
+  },
+  {
+    id: "end",
+    message: "Merci d'avoir utilisé le chatbot ! 👋",
+    end: true,
   },
 ];
+
 
 export default function ChatBotWidget() {
   const [open, setOpen] = useState(false);
@@ -77,15 +99,18 @@ export default function ChatBotWidget() {
       >
         💬
       </button>
+
       {open && (
-        <div style={{
-          position: "fixed",
-          bottom: 100,
-          right: 32,
-          zIndex: 9999,
-          width: 340,
-          maxWidth: "90vw",
-        }}>
+        <div
+          style={{
+            position: "fixed",
+            bottom: 100,
+            right: 32,
+            zIndex: 9999,
+            width: 340,
+            maxWidth: "90vw",
+          }}
+        >
           <ThemeProvider theme={theme}>
             <ChatBot
               steps={steps}
