@@ -15,7 +15,7 @@ const theme = {
   userFontColor: "#232946",
 };
 
-// Composant personnalisé pour appeler l'API Hugging Face via ton backend
+// Composant personnalisé pour appeler l'API Gemini via ton backend
 function OpenAIStep({ steps, triggerNextStep }) {
   const userMessage = steps["user-input"].value;
   const [reply, setReply] = useState("...");
@@ -72,9 +72,12 @@ const steps = [
   },
 ];
 
-
 export default function ChatBotWidget() {
   const [open, setOpen] = useState(false);
+
+  // Utilise un emoji pour chaque avatar
+  const botAvatar = "🤖";
+  const userAvatar = "🧑";
 
   return (
     <>
@@ -118,8 +121,8 @@ export default function ChatBotWidget() {
               headerTitle="AI Chatbot"
               placeholder="Écrivez votre question..."
               recognitionEnable={true}
-              botAvatar={null}
-              userAvatar={null}
+              botAvatar={botAvatar}      // <-- emoji ici
+              userAvatar={userAvatar}    // <-- emoji ici
               hideSubmitButton={false}
               hideBotAvatar={false}
               hideUserAvatar={false}

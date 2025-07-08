@@ -53,13 +53,13 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-// === ENDPOINT CHATBOT (Hugging Face - Mixtral) ===
+// === ENDPOINT CHATBOT (Google Gemini) ===
 
 app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
   try {
     const geminiResponse = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + process.env.GOOGLE_API_KEY,
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + process.env.GOOGLE_API_KEY,
       {
         method: "POST",
         headers: {
@@ -78,9 +78,23 @@ app.post("/api/chat", async (req, res) => {
     );
 
     const data = await geminiResponse.json();
+    console.log("Réponse Gemini brute:", JSON.stringify(data, null, 2));
 
-    // Extract the reply from the Gemini API response
-    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Réponse vide.";
+    // Vérifie si la réponse contient bien un texte
+    let reply = "Réponse vide.";
+    if (
+      data &&
+      Array.isArray(data.candidates) &&
+      data.candidates[0] &&
+      data.candidates[0].content &&
+      Array.isArray(data.candidates[0].content.parts) &&
+      data.candidates[0].content.parts[0] &&
+      typeof data.candidates[0].content.parts[0].text === "string"
+    ) {
+      reply = data.candidates[0].content.parts[0].text;
+    } else if (data.error && data.error.message) {
+      reply = "Erreur Gemini: " + data.error.message;
+    }
 
     res.json({ reply });
   } catch (err) {
@@ -88,6 +102,7 @@ app.post("/api/chat", async (req, res) => {
     res.status(500).json({ reply: "Erreur serveur. Veuillez réessayer plus tard." });
   }
 });
+
 // === SERVE REACT FRONTEND BUILD ===
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
