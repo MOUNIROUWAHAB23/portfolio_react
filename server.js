@@ -54,50 +54,40 @@ app.post("/contact", async (req, res) => {
 });
 
 // === ENDPOINT CHATBOT (Hugging Face - Mixtral) ===
+
 app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
   try {
-    const hfResponse = await fetch(
-      "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1",
+    const geminiResponse = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + process.env.GOOGLE_API_KEY,
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.HF_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          inputs: `<s>[INST] ${message} [/INST]`,
-          parameters: {
-            max_new_tokens: 150,
-            temperature: 0.7,
-          },
+          contents: [
+            {
+              parts: [
+                { text: message }
+              ]
+            }
+          ]
         }),
       }
     );
 
-    const raw = await hfResponse.text();
-    let data;
-    try {
-      data = JSON.parse(raw);
-    } catch {
-      return res.json({ reply: `Erreur de parsing JSON: ${raw}` });
-    }
+    const data = await geminiResponse.json();
 
-    if (data.error) {
-      return res.json({ reply: data.error });
-    }
-
-    // Parsing correct pour ne renvoyer que la réponse générée
-    const fullText = data[0]?.generated_text || "";
-    const reply = fullText.split("[/INST]")[1]?.trim() || fullText.trim() || "Réponse vide.";
+    // Extract the reply from the Gemini API response
+    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Réponse vide.";
 
     res.json({ reply });
   } catch (err) {
-    console.error("Erreur HuggingFace:", err);
+    console.error("Erreur Google Gemini:", err);
     res.status(500).json({ reply: "Erreur serveur. Veuillez réessayer plus tard." });
   }
 });
-
 // === SERVE REACT FRONTEND BUILD ===
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
