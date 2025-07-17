@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import axios from "axios";
+import botIcon from "../assets/img/bot.png"; // Assurez-vous que le chemin est correct
+import userIcon from"../assets/img/user.png"; // Assurez-vous que le chemin est correct
 
 const theme = {
   background: "#f5f7fa",
@@ -75,10 +77,6 @@ const steps = [
 export default function ChatBotWidget() {
   const [open, setOpen] = useState(false);
 
-  // Utilise un emoji pour chaque avatar
-  const botAvatar = "🤖";
-  const userAvatar = "🧑";
-
   return (
     <>
       <button
@@ -121,8 +119,8 @@ export default function ChatBotWidget() {
               headerTitle="AI Chatbot"
               placeholder="Écrivez votre question..."
               recognitionEnable={true}
-              botAvatar={botAvatar}      // <-- emoji ici
-              userAvatar={userAvatar}    // <-- emoji ici
+              botAvatar={botIcon}      // avatar du bot
+              userAvatar={userIcon}    // avatar utilisateur
               hideSubmitButton={false}
               hideBotAvatar={false}
               hideUserAvatar={false}

@@ -5,6 +5,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import colorSharp from "../assets/img/color-sharp.png";
 import './Skills.css'; // ✅ Ajout du fichier de style
+import './Banner.css'
 
 export const Skills = () => {
   const [progressValues, setProgressValues] = useState([0, 0, 0]);
@@ -33,8 +34,8 @@ export const Skills = () => {
 
   const skills = [
     { value: progressValues[0], text: "Web Development" },
-    { value: progressValues[1], text: "Test Development" },
-    { value: progressValues[2], text: "Logo Design" },
+    { value: progressValues[1], text: "Code Testing" },
+    { value: progressValues[2], text: "Logo/UI Design" },
   ];
 
   return (
@@ -44,7 +45,7 @@ export const Skills = () => {
           <div className="text-center">
             <div className="skill-bx wow zoomIn">
               <h2 className="colorism">Compétences</h2>
-              <p>
+              <p className="description-banner">
                 En tant que développeur full-stack passionné, UI/UX designer et intégrateur web,
                 je maîtrise l'ensemble du cycle de création d'une application web, de la conception à la mise en production.
                 <br />

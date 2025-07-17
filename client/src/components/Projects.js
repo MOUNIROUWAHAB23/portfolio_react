@@ -7,6 +7,8 @@ import projImg3 from "../assets/img/AR-stage.png";
 import projImg4 from "../assets/img/Arimayi-stage.png";
 import projImg5 from "../assets/img/Tv-shows.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
+import eventman from "../assets/img/evenTMan.png";
+import webshows from "../assets/img/web_shows.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 
@@ -26,13 +28,20 @@ export const Projects = () => {
     },
     {
       title: "E-Maillot",
-      description: "Plateforme e-commerce sportive.",
+      description: "Plateforme e-commerce sportive. (Php,mysql,bootstrap,docker)",
       imgUrl: projImg2,
       onClick: () => handleProjectClick("e-maillot"),
     },
+   {
+      title: "Web Shows",
+      description: "Application web de gestion de programmes télévisées , de séries et de films.(React, Node.js, MongoDB)",
+      imgUrl: webshows,
+      onClick: () => handleProjectClick("web-show"),
+    },
+   
     {
       title: "Disk Cleaner",
-      description: "Optimisation de stockage.",
+      description: "Optimisation de stockage.(c# (POO) et WPF)",
       imgUrl: projImg1,
       onClick: () => handleProjectClick("disk-cleaner"),
     },
@@ -42,6 +51,14 @@ export const Projects = () => {
       imgUrl: projImg5,
       onClick: () => handleProjectClick("dev-mobile"),
     },
+   
+    {
+      title: "Dev-mobile (REACT NATIVE)",
+      description: "Développement d'une application mobile de gestion d'évènements.",
+      imgUrl: eventman,
+      onClick: () => handleProjectClick("dev-mobile-eventmanager"),
+    },
+   
     // Ajoute d'autres projets ici si besoin
   ];
 
@@ -64,16 +81,16 @@ export const Projects = () => {
                   <Tab.Container id="projects-tabs" defaultActiveKey="first">
                     <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center">
                       <Nav.Item>
-                        <Nav.Link eventKey="first">Projets phares</Nav.Link>
+                        <Nav.Link eventKey="first">Projets web</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="second">Autres projets</Nav.Link>
+                        <Nav.Link eventKey="second">projets mobiles</Nav.Link>
                       </Nav.Item>
                     </Nav>
                     <Tab.Content className={isVisible ? "animate__animated animate__slideInUp" : ""}>
                       <Tab.Pane eventKey="first">
                         <Row>
-                          {projects.slice(0, 3).map((project, index) => (
+                          {projects.slice(0, 5).map((project, index) => (
                             <ProjectCard key={index} {...project} />
                           ))}
                         </Row>
